@@ -1,4 +1,5 @@
 .sidebar {
+
 }
 
 .sidebar.open {
@@ -8,15 +9,19 @@
 }
 
 .nav {
+
 }
 
 .nav a {
+    color: green;
 }
 
 .nav a:hover {
+    color: mediumpurple;
 }
 
 .nav a.active {
+    color: coral;
 }
 .close {
 }
