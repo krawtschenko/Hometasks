@@ -12,18 +12,17 @@ function Clock() {
     const start = () => {
         // пишут студенты // запустить часы (должно отображаться реальное время, а не +1)
         // сохранить ид таймера (https://learn.javascript.ru/settimeout-setinterval#setinterval)
-        let clock = window.setInterval(() => {
-            setTimerId(clock)
-            setDate(new Date())
-        }, 1000)
+
+        const go = () => setDate(new Date())
+        go()
+        const clock = window.setInterval(go, 1000)
+        setTimerId(clock)
     }
 
     const stop = () => {
         // пишут студенты // поставить часы на паузу, обнулить ид таймера (timerId <- undefined)
-        setTimeout(() => {
-            clearInterval(timerId)
-            setTimerId(undefined)
-        })
+        clearInterval(timerId)
+        setTimerId(undefined)
     }
 
     const onMouseEnter = () => { // пишут студенты // показать дату если наведена мышка
@@ -34,12 +33,18 @@ function Clock() {
     }
 
     const stringTime = date.toLocaleTimeString() || <br/> // часы24:минуты:секунды (01:02:03)/(23:02:03)/(24:00:00)/(00:00:01) // пишут студенты
-    const stringDate = 'date->date' || <br/> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
+    let formatterDate = new Intl.DateTimeFormat("ru")
+    const stringDate = formatterDate.format(date) || <br/> // день.месяц.год (01.02.2022) // пишут студенты, варианты 01.02.0123/01.02.-123/01.02.12345 не рассматриваем
 
     // день недели на английском, месяц на английском (https://learn.javascript.ru/intl#intl-datetimeformat)
-    const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
-    const stringDay = days[date.getDay()] || <br/> // пишут студенты
-    const stringMonth = 'date->month' || <br/> // пишут студенты
+    let formatterDay = new Intl.DateTimeFormat("en-GB", {
+        weekday: "long"
+    });
+    const stringDay = formatterDay.format(date) || <br/> // пишут студенты
+    let formatterMonth = new Intl.DateTimeFormat("en-GB", {
+        month: "long"
+    });
+    const stringMonth = formatterMonth.format(date) || <br/> // пишут студенты
 
     return (
         <div className={s.clock}>
