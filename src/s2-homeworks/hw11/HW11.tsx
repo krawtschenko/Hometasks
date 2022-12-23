@@ -1,7 +1,6 @@
 import React, {useState} from 'react'
 import s from './HW11.module.css'
 import s2 from '../../s1-main/App.module.css'
-import {restoreState} from '../hw06/localStorage/localStorage'
 import SuperRange from './common/c7-SuperRange/SuperRange'
 
 /*
@@ -12,8 +11,8 @@ import SuperRange from './common/c7-SuperRange/SuperRange'
 
 function HW11() {
     // for autotests // не менять // можно подсунуть в локалСторэдж нужные числа, чтоб увидеть как они отображаются
-    const [value1, setValue1] = useState(restoreState<number>('hw11-value1', 20))
-    const [value2, setValue2] = useState(restoreState<number>('hw11-value2', 100))
+    const [value1, setValue1] = useState((0))
+    const [value2, setValue2] = useState((100))
 
     const change = (event: Event, value: number | Array<number>) => {
         // пишет студент // если пришёл массив - сохранить значения в оба useState, иначе в первый
